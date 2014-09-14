@@ -7,9 +7,11 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Stone {
-	protected int speed;
-	protected int gravity;
-	protected Texture texture;
+	private int speed;
+	private int gravity;
+	private Texture texture;
+	private int positionX;
+	private int positionY;
 	
 	protected Stone(int speed, int gravity) {
 		this.speed = speed;
@@ -26,11 +28,12 @@ public abstract class Stone {
 	};
 
 	public void initQuad() {
-		Color.white.bind();
-		texture.bind(); // or GL11.glBind(texture.getTextureID());
 	};
 
-	public void updateQuad() {
+	public void render() {
+		Color.white.bind();
+		texture.bind(); // or GL11.glBind(texture.getTextureID());
+		
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0, 0);
 		GL11.glVertex2f(100, 100);
