@@ -1,3 +1,5 @@
+import org.newdawn.slick.opengl.Texture;
+
 
 
 public class PlayerStone extends Stone {
@@ -10,13 +12,17 @@ public class PlayerStone extends Stone {
 		positionX=350;
 		positionY=500;
 	}
-	
-	public void move(boolean left,int delta) {
-		if(left){
-			positionX -= 0.35f * delta;
-		}else if(!left){
-			positionX += 0.35f * delta;
+
+	public void move(boolean left, int delta) {
+		if (positionX >= 0) {
+			if (left) {
+				positionX -= speed * delta;
+			}
+		}
+		if (positionX <= 800-texture.getImageWidth()) {
+			if (!left) {
+				positionX += speed * delta;
+			}
 		}
 	}
-
 }

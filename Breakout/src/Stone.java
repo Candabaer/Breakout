@@ -7,11 +7,11 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Stone {
-	private int speed;
-	private int gravity;
-	private Texture texture;
-	protected int positionX;
-	protected int positionY;
+	protected int speed;
+	protected int gravity;
+	protected Texture texture;
+	protected float positionX;
+	protected float positionY;
 	
 	protected Stone(int speed, int gravity) {
 		this.speed = speed;
@@ -31,6 +31,7 @@ public abstract class Stone {
 	}
 
 	public void render() {
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		Color.white.bind();
 		texture.bind(); // or GL11.glBind(texture.getTextureID());
 
@@ -46,5 +47,4 @@ public abstract class Stone {
 		GL11.glVertex2f(positionX, positionY + texture.getTextureHeight());
 		GL11.glEnd();
 	}
-
 }
