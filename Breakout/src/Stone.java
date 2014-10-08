@@ -8,14 +8,12 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Stone {
 	protected int speed;
-	protected int gravity;
 	protected Texture texture;
 	protected float positionX;
 	protected float positionY;
 	
-	protected Stone(int speed, int gravity) {
+	protected Stone(int speed) {
 		this.speed = speed;
-		this.gravity = gravity;
 	}
 
 	public void loadTextures(final String SOURCE) {
