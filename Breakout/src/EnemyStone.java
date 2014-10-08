@@ -6,14 +6,12 @@ public class EnemyStone extends Stone{
 	protected EnemyStone(int speed) {
 		super(speed);
 		loadTextures(TEXTUREPATH);
-		initQuad();
-		positionX=-1;
-		if(positionX <= 800-texture.getImageWidth()||positionX >= 0)
-		positionX=(float) (Math.random()*800);
-		positionY=0;
+		//if(positionX <= 800-texture.getImageWidth()||positionX >= 0)
+		positionX=400;//(float) (Math.random()*800);
+		positionY=300;
 	}
-	
+
 	public void move(int delta){
-		positionY+=speed*delta;
+		positionY-=speed*delta;
 	}
 }

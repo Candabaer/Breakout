@@ -2,21 +2,21 @@ import org.newdawn.slick.opengl.Texture;
 
 public class PlayerStone extends Stone {
 
-	public final int LEFT = 0;
-	public final int RIGHT = 1;
-	public final int UP = 2;
-	public final int DOWN = 3;
+	public static final int LEFT = 0;
+	public static final int RIGHT = 1;
+	public static final int UP = 2;
+	public static final int DOWN = 3;
+	public static final int PEW = 4;
 	private final String TEXTUREPATH = "res/Playerstone.png";
 
 	public PlayerStone(int speed) {
 		super(speed);
 		loadTextures(TEXTUREPATH);
 		positionX = 350;
-		positionY = 500;
+		positionY = 100;
 	}
 
 	public void move(int direction, int delta) {
-		// delta=1;
 
 		if (positionX <= 0) {
 			positionX = 0;
@@ -43,5 +43,16 @@ public class PlayerStone extends Stone {
 		if (direction == DOWN) {
 			positionY -= speed * delta;
 		}
+		if(direction == PEW){
+			pewPew();
+		}
+	}
+	
+	public void pewPew(){
+		/*FIRE ALL THE WEAPONS
+		 * for (weapon tmp:Weapons)
+		 * weapon.fire();
+		 */
+		
 	}
 }
