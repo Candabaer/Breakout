@@ -27,8 +27,6 @@ public class MainWindow {
 	}
 	
 	public void start() {
-
-		timer.getDelta();
 		
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		while (!Display.isCloseRequested()) {
@@ -50,10 +48,15 @@ public class MainWindow {
 	}
 	
 	private void pollInput() {
+		int inputDelta=1;
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-			player.move(true, timer.getDelta());
-		}else if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-			player.move(false, timer.getDelta());
+			player.move(player.LEFT, inputDelta);
+		}if(Keyboard.isKeyDown(Keyboard.KEY_D)){
+			player.move(player.RIGHT, inputDelta);
+		}if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+			player.move(player.UP, inputDelta);
+		}if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+			player.move(player.DOWN, inputDelta);
 		}
 	}
 	
