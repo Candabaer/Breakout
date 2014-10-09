@@ -54,5 +54,7 @@ public class PlayerStone extends Stone {
 		 * weapon.fire();
 		 */
 		
+		System.out.println("PEW PEW PEW PEW");
+		
 	}
 }

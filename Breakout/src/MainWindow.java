@@ -2,7 +2,6 @@ import java.util.Vector;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -54,14 +53,14 @@ public class MainWindow {
 	}
 	
 	private void pollInput(int inputDelta) {
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+			player.move(PlayerStone.UP, inputDelta);
+		}if(Keyboard.isKeyDown(Keyboard.KEY_A)){
 			player.move(PlayerStone.LEFT, inputDelta);
 		}if(Keyboard.isKeyDown(Keyboard.KEY_D)){
 			player.move(PlayerStone.RIGHT, inputDelta);
 		}if(Keyboard.isKeyDown(Keyboard.KEY_S)){
 			player.move(PlayerStone.DOWN, inputDelta);
-		}if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-			player.move(PlayerStone.UP, inputDelta);
 		}if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
 			player.move(PlayerStone.PEW, inputDelta);
 		}
@@ -69,8 +68,8 @@ public class MainWindow {
 	
 	private void spawnEnemys(int delta){
 		spawnDelta+=delta;
-		int timeToSpawn=5000;
-		System.out.println(spawnDelta+"  "+delta);
+		int timeToSpawn=2500;
+		System.out.println(spawnDelta+"  "+delta+"  "+enemys.size());
 		if(spawnDelta>=timeToSpawn){
 			EnemyStone tmp=new EnemyStone(TESTSPEED);
 			enemys.add(tmp);
