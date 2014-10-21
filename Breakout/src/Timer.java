@@ -2,9 +2,9 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 
 public class Timer {
-	int fps;
-	long lastFPS;
-	long lastFrame;
+	private int fps;
+	private long lastFPS;
+	private long lastFrame;
 
 	public long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
