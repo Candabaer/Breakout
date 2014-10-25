@@ -7,7 +7,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 public class MainWindow {
-	final int TESTSPEED=1;
+	final float TESTSPEED=0.5f;
 	
 	private PlayerStone player;
 	private int width = 800;

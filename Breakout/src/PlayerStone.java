@@ -9,7 +9,7 @@ public class PlayerStone extends Stone {
 	public static final int PEW = 4;
 	private final String TEXTUREPATH = "res/Playerstone.png";
 
-	public PlayerStone(int speed) {
+	public PlayerStone(float speed) {
 		super(speed);
 		loadTextures(TEXTUREPATH);
 		positionX = 350;
@@ -54,7 +54,6 @@ public class PlayerStone extends Stone {
 		 * weapon.fire();
 		 */
 		
-		System.out.println("PEW PEW PEW PEW");
-		
+		System.out.println("PEW PEW PEW PEW");	
 	}
 }

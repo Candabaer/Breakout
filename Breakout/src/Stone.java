@@ -7,12 +7,12 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Stone {
-	protected int speed;
+	protected float speed;
 	protected Texture texture;
 	protected float positionX;
 	protected float positionY;
 	
-	protected Stone(int speed) {
+	protected Stone(float speed) {
 		this.speed = speed;
 	}
 
