@@ -38,9 +38,10 @@ public class MainWindow {
 			delta=timer.getDelta();
 			spawnEnemys(delta);
 			// objekte rendern
-			for (EnemyStone tmp : enemys) {
-				tmp.render();
-				tmp.move(delta);
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+			for (int i=0;i<enemys.size();i++) {
+				enemys.get(i).move(delta);
+				enemys.get(i).render();
 			}
 			player.render();
 			//eingaben überprüfen und ausführen
@@ -69,7 +70,6 @@ public class MainWindow {
 	private void spawnEnemys(int delta){
 		spawnDelta+=delta;
 		int timeToSpawn=2500;
-		System.out.println(spawnDelta+"  "+delta+"  "+enemys.size());
 		if(spawnDelta>=timeToSpawn){
 			EnemyStone tmp=new EnemyStone(TESTSPEED);
 			enemys.add(tmp);

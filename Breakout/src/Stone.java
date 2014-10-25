@@ -26,7 +26,6 @@ public abstract class Stone {
 	}
 
 	public void render() {
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		Color.white.bind();
 		texture.bind(); // or GL11.glBind(texture.getTextureID());
 
