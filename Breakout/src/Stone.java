@@ -1,6 +1,7 @@
 import java.io.IOException;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -11,11 +12,13 @@ public abstract class Stone {
 	protected Texture texture;
 	protected float positionX;
 	protected float positionY;
+	protected Rectangle rect;
 	
 	protected Stone(float speed) {
 		this.speed = speed;
 	}
 
+	/*Initialisiert die Texture und das Rectangle*/
 	public void loadTextures(final String SOURCE) {
 		try {
 			texture = TextureLoader.getTexture("PNG",
@@ -23,6 +26,8 @@ public abstract class Stone {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		rect=new Rectangle((int)(positionX),(int)(positionY),(int)(positionX+texture.getImageWidth()),
+				(int)(positionY+texture.getHeight()));
 	}
 
 	public void render() {
@@ -40,5 +45,10 @@ public abstract class Stone {
 		GL11.glTexCoord2f(1,0);
 		GL11.glVertex2f(positionX, positionY + texture.getTextureHeight());
 		GL11.glEnd();
+	}
+	
+	/*@Returns a the Rectangle*/
+	public Rectangle getRect(){
+		return rect;
 	}
 }
