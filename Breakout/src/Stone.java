@@ -13,9 +13,11 @@ public abstract class Stone {
 	protected float positionX;
 	protected float positionY;
 	protected Rectangle rect;
+	protected Boolean toRender;
 	
 	protected Stone(float speed) {
 		this.speed = speed;
+		toRender=true;
 	}
 
 	/*Initialisiert die Texture und das Rectangle*/
@@ -26,25 +28,35 @@ public abstract class Stone {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		rect=new Rectangle((int)(positionX),(int)(positionY),(int)(positionX+texture.getImageWidth()),
-				(int)(positionY+texture.getHeight()));
+		rect=new Rectangle((int)(positionX),(int)(positionY),(int)(texture.getImageWidth()),
+				(int)texture.getHeight());
+	}
+	
+	public void updateRectangle(){
+		rect.setLocation((int)positionX, (int)positionY);
 	}
 
 	public void render() {
-		Color.white.bind();
-		texture.bind(); // or GL11.glBind(texture.getTextureID());
-
-		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glTexCoord2f(1,1);
-		GL11.glVertex2f(positionX, positionY);
-		GL11.glTexCoord2f(0,1);
-		GL11.glVertex2f(positionX + texture.getTextureWidth(), positionY);
-		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(positionX + texture.getTextureWidth(),
-				positionY + texture.getTextureHeight());
-		GL11.glTexCoord2f(1,0);
-		GL11.glVertex2f(positionX, positionY + texture.getTextureHeight());
-		GL11.glEnd();
+		if(toRender){
+			Color.white.bind();
+			texture.bind(); // or GL11.glBind(texture.getTextureID());
+	
+			GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(1,1);
+			GL11.glVertex2f(positionX, positionY);
+			GL11.glTexCoord2f(0,1);
+			GL11.glVertex2f(positionX + texture.getTextureWidth(), positionY);
+			GL11.glTexCoord2f(0,0);
+			GL11.glVertex2f(positionX + texture.getTextureWidth(),
+					positionY + texture.getTextureHeight());
+			GL11.glTexCoord2f(1,0);
+			GL11.glVertex2f(positionX, positionY + texture.getTextureHeight());
+			GL11.glEnd();
+		}
+	}
+	
+	public void setToRender(Boolean toRender){
+		this.toRender=toRender;
 	}
 	
 	/*@Returns a the Rectangle*/

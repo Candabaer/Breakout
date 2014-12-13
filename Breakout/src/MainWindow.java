@@ -39,17 +39,22 @@ public class MainWindow {
 			spawnEnemys(delta);
 			// objekte rendern
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-			if (!enemys.isEmpty()) {
-				handleAllTheCollisions();
-			}
+			
 			for (int i = 0; i < enemys.size(); i++) {
 				if (enemys.get(i).canYouDeletMe()) {
 					enemys.remove(i);
 					continue;
 				}
+				enemys.get(i).updateRectangle();
 				enemys.get(i).move(delta);
 				enemys.get(i).render();
 			}
+			
+			if (!enemys.isEmpty()) {
+				handleAllTheCollisions();
+			}
+			
+			player.updateRectangle();
 			player.render();
 			// eingaben überprüfen und ausführen
 			pollInput(delta);
@@ -112,12 +117,19 @@ public class MainWindow {
 		// soll
 		// ist der verhurteste scheiss auf diesem Planeten.
 
-		for (int i = 0; i < enemys.capacity(); i++) {
-			if (enemys.elementAt(i).getRect().intersects(player.getRect())) {
+		//for (int i = 0; i < enemys.capacity(); i++) {
+		for(EnemyStone tmp:enemys){
+			int i=0;
+			System.out.println("I'm Here");
+			if(tmp.getRect().intersects(player.getRect())){
+				System.out.println("I'm not here");
+				System.out.println("BOOOOOOOOM INSERT EXPLOSIONS TO CONTINUE");
+			}
+			i++;
+			/*if (enemys.elementAt(i).getRect().intersects(player.getRect())) {
 				enemys.remove(i);
 				System.out.println("BOOOOOOOOM INSERT EXPLOSIONS TO CONTINUE");
-				
-			}
+			}*/
 		}
 	}
 }
