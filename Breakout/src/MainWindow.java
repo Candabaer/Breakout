@@ -39,7 +39,7 @@ public class MainWindow {
 			spawnEnemys(delta);
 			// objekte rendern
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-			
+
 			for (int i = 0; i < enemys.size(); i++) {
 				if (enemys.get(i).canYouDeletMe()) {
 					enemys.remove(i);
@@ -50,10 +50,11 @@ public class MainWindow {
 				enemys.get(i).render();
 			}
 			
+			
 			if (!enemys.isEmpty()) {
 				handleAllTheCollisions();
 			}
-			
+
 			player.updateRectangle();
 			player.render();
 			// eingaben überprüfen und ausführen
@@ -113,23 +114,16 @@ public class MainWindow {
 	}
 
 	private void handleAllTheCollisions() {// TODO Hurensohn funktioniert nicht
-		// Dieser scheissdreck kotzt mich richtig an das das nicht funktionieren
-		// soll
-		// ist der verhurteste scheiss auf diesem Planeten.
-
-		//for (int i = 0; i < enemys.capacity(); i++) {
-		for(EnemyStone tmp:enemys){
-			int i=0;
-			System.out.println("I'm Here");
-			if(tmp.getRect().intersects(player.getRect())){
-				System.out.println("I'm not here");
-				System.out.println("BOOOOOOOOM INSERT EXPLOSIONS TO CONTINUE");
-			}
-			i++;
-			/*if (enemys.elementAt(i).getRect().intersects(player.getRect())) {
+		for (int i = 0; i < enemys.size(); i++) {
+			if(player.getRect().intersects(enemys.get(i).getRect())){
+				enemys.get(i).setToRender(false);
 				enemys.remove(i);
-				System.out.println("BOOOOOOOOM INSERT EXPLOSIONS TO CONTINUE");
-			}*/
+			}
 		}
 	}
 }
+
+
+
+
+
