@@ -29,7 +29,7 @@ public abstract class Stone {
 			e.printStackTrace();
 		}
 		rect=new Rectangle((int)(positionX),(int)(positionY),(int)(texture.getImageWidth()),
-				(int)texture.getHeight());
+				(int)texture.getImageHeight());
 	}
 	
 	public void updateRectangle(){
@@ -53,6 +53,10 @@ public abstract class Stone {
 			GL11.glVertex2f(positionX, positionY + texture.getTextureHeight());
 			GL11.glEnd();
 		}
+	}
+	
+	public Texture getTexture(){
+		return texture;
 	}
 	
 	public void setToRender(Boolean toRender){
