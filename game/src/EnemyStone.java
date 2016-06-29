@@ -14,6 +14,14 @@ public class EnemyStone extends Stone {
 			}
 		}
 	}
+	
+	public Boolean update(int delta){
+		
+		this.updateRectangle();
+		this.move(delta);
+		this.render();
+		return this.canYouDeletMe();
+	}
 
 	public void move(int delta) {
 		positionY -= speed * delta;

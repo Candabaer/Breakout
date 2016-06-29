@@ -1,3 +1,4 @@
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.opengl.Texture;
 
 public class PlayerStone extends Stone {
@@ -16,7 +17,16 @@ public class PlayerStone extends Stone {
 		positionY = 100;
 	}
 
-	public void move(int direction, int delta) {
+	public void update(int delta){
+
+		this.updateRectangle();
+		this.render();
+		// eingaben überprüfen und ausführen
+		this.pollInput(delta);
+		
+	}
+	
+	private void move(int direction, int delta) {
 
 		if (positionX <= 0) {
 			positionX = 0;
@@ -48,7 +58,25 @@ public class PlayerStone extends Stone {
 		}
 	}
 	
-	public void pewPew(){
+	private void pollInput(int inputDelta) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+			this.move(PlayerStone.UP, inputDelta);
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			this.move(PlayerStone.LEFT, inputDelta);
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			this.move(PlayerStone.RIGHT, inputDelta);
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+			this.move(PlayerStone.DOWN, inputDelta);
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			this.move(PlayerStone.PEW, inputDelta);
+		}
+	}
+	
+	private void pewPew(){
 		/*FIRE ALL THE WEAPONS
 		 * for (weapon tmp:Weapons)
 		 * weapon.fire();
