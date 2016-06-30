@@ -5,11 +5,11 @@ public class EnemyStone extends Stone {
 	protected EnemyStone(float speed) {
 		super(speed);
 		loadTextures(TEXTUREPATH);
-		positionY = 600;
-		positionX = -1;
+		position[1] = width;
+		position[0] = -1;
 		while (true) {
-			positionX = (float) (Math.random() * 800);
-			if (positionX >= 0 || positionX <= 800 - texture.getImageWidth()) {
+			position[0] = (float) (Math.random() * width);
+			if (position[0] >= 0 || position[0] <= width - (texture.getImageHeight())) {
 				break;
 			}
 		}
@@ -24,11 +24,11 @@ public class EnemyStone extends Stone {
 	}
 
 	public void move(int delta) {
-		positionY -= speed * delta;
+		position[1] -= speed * delta;
 	}
 
 	public boolean canYouDeletMe() {
-		if (positionY < 0)
+		if (position[1] < 0)
 			return true;
 		else
 			return false;

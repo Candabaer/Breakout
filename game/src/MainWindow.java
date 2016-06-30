@@ -9,8 +9,10 @@ import org.lwjgl.opengl.GL11;
 public class MainWindow {
 	private GameLoop gameLoop;
 	
-	private int width = 800;
-	private int height = 600;
+	//private int width = 800;
+	//private int height = 600;
+	private int width = 1351;
+	private int height = 760;
 	private Timer timer;
 
 	public MainWindow() {
