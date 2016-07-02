@@ -11,13 +11,12 @@ public class Weapon extends Stone {
 		super(speed * 1.75f);
 		loadTextures(TEXTUREPATH);
 		this.position = position.clone();
+		this.position[0] = this.position[0]-(texture.getImageWidth()/2);
 	}
 	
 	public void move(int direction, int delta) {
-		if (direction == 0) {
 			position[1] += speed * delta;
 			cooldown -= delta;
-		}
 	}
 	
 	public void update(int direction,int delta){

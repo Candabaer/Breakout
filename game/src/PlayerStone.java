@@ -4,8 +4,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
+import org.lwjgl.input.Mouse;
+
 public class PlayerStone extends Stone {
-	
 
 	public static final int LEFT = 0;
 	public static final int RIGHT = 1;
@@ -21,8 +22,8 @@ public class PlayerStone extends Stone {
 		weapon = new Vector<Weapon>();
 		loadTextures(TEXTUREPATH);
 		cooldown = 500f;
-		position[0] = (width/2);
-		position[1] = (height/4);
+		position[0] = (width / 2);
+		position[1] = (height / 4);
 	}
 
 	public void update(int delta) {
@@ -58,6 +59,10 @@ public class PlayerStone extends Stone {
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			this.move(PlayerStone.PEW, inputDelta);
 		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
+			System.out.println("X:" + Mouse.getX() + " Y:" + Mouse.getY());
+		}
+
 	}
 
 	private void move(int direction, int delta) {
@@ -103,12 +108,12 @@ public class PlayerStone extends Stone {
 	}
 
 	public boolean hit(Rectangle enemy) {
-		for(int i = 0;i<weapon.size();i++){
-			if(weapon.get(i).getRect().intersects(enemy)){
+		for (int i = 0; i < weapon.size(); i++) {
+			if (weapon.get(i).getRect().intersects(enemy)) {
 				weapon.remove(i);
 				return true;
 			}
-			
+
 		}
 		return false;
 	}

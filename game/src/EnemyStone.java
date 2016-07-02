@@ -7,16 +7,12 @@ public class EnemyStone extends Stone {
 		loadTextures(TEXTUREPATH);
 		position[1] = width;
 		position[0] = -1;
-		while (true) {
-			position[0] = (float) (Math.random() * width);
-			if (position[0] >= 0 || position[0] <= width - (texture.getImageHeight())) {
-				break;
-			}
-		}
+		position[0] = (float) (Math.random() * width);
+		position[0] %= (width - (texture.getImageWidth()));
 	}
-	
-	public Boolean update(int delta){
-		
+
+	public Boolean update(int delta) {
+
 		this.updateRectangle();
 		this.move(delta);
 		this.render();
@@ -28,7 +24,7 @@ public class EnemyStone extends Stone {
 	}
 
 	public boolean canYouDeletMe() {
-		if (position[1] < 0)
+		if (position[1] < -1 - texture.getImageHeight())
 			return true;
 		else
 			return false;
