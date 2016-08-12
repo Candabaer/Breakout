@@ -8,12 +8,13 @@ public class GameLoop {
 	final float TESTSPEED = 0.5f;
 	private int spawnDelta;
 	// private int delta;
-	private Vector<EnemyStone> enemys;
+	private Vector<Stone> enemys;
+	private Vector<EndBoss> boss;
 	private PlayerStone player;
 
 	public GameLoop() {
 		player = new PlayerStone(TESTSPEED * 1.5f);
-		enemys = new Vector<EnemyStone>();
+		enemys = new Vector<Stone>();
 
 	}
 
@@ -25,7 +26,12 @@ public class GameLoop {
 		player.update(delta);
 
 		for (int i = 0; i < enemys.size(); i++) {
-			if (enemys.get(i).update(delta) == true) {
+			if(enemys.get(i) instanceof EndBoss){
+				if (((EndBoss) enemys.get(i)).update(delta) == true) {
+					enemys.remove(i);
+					continue;
+				} 
+			}else if (((EnemyStone) enemys.get(i)).update(delta) == true) {
 				enemys.remove(i);
 				continue;
 			}
@@ -43,9 +49,18 @@ public class GameLoop {
 		int timeToSpawn = 500;
 		if (spawnDelta >= timeToSpawn) {
 			EnemyStone tmp = new EnemyStone(TESTSPEED);
+			EndBoss bosstmp = new EndBoss(TESTSPEED);
+			enemys.add(tmp);
+			enemys.add(bosstmp);
+			spawnDelta = 0;
+		}
+
+		if (spawnDelta >= timeToSpawn) {
+			EnemyStone tmp = new EnemyStone(TESTSPEED);
 			enemys.add(tmp);
 			spawnDelta = 0;
 		}
+
 	}
 
 	private void handleAllTheCollisions() {// TODO Hurensohn funktioniert nicht
